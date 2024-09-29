@@ -1,0 +1,46 @@
+{
+  "name": "commitmap",
+  "version": "1.0.0",
+  "description": "A simple tool to visualize git commit history",
+  "main": "index.js",
+  "bin": {
+    "commitmap": "dist/index.min.js"
+  },
+  "scripts": {
+    "build": "terser index.js -o dist/index.min.js",
+    "run": "node dist/index.min.js"
+  },
+  "keywords": [
+    "commit",
+    "visualization",
+    "graph",
+    "history",
+    "git",
+    "repository",
+    "analytics",
+    "activity",
+    "timeline",
+    "six months",
+    "commit graph",
+    "developer tools",
+    "code",
+    "statistics",
+    "commit history",
+    "commit map",
+    "commit timeline",
+    "commit activity"
+  ],
+  "author": "Ravikisha<ravikishan63392@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commitmap": "file:",
+    "extend-shallow": "^3.0.2",
+    "git-config-path": "^2.0.0",
+    "parse-git-config": "^3.0.0",
+    "simple-git": "^3.27.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "terser": "^5.34.1"
+  }
+}
