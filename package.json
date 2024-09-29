@@ -1,5 +1,5 @@
 {
-  "name": "commitmap",
+  "name": "commitgraph",
   "version": "1.0.0",
   "description": "A simple tool to visualize git commit history",
   "main": "index.js",
@@ -33,6 +33,7 @@
   "author": "Ravikisha<ravikishan63392@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "commitgraph": "file:",
     "commitmap": "file:",
     "extend-shallow": "^3.0.2",
     "git-config-path": "^2.0.0",
