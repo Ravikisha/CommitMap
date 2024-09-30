@@ -1,10 +1,10 @@
 {
   "name": "commitmap",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple tool to visualize git commit history",
   "main": "index.js",
   "bin": {
-    "commitmap": "dist/index.min.js"
+    "commitmap": "./index.js"
   },
   "scripts": {
     "build": "terser index.js -o dist/index.min.js",
