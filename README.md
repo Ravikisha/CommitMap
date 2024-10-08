@@ -23,7 +23,7 @@
 
 **CommitMap** is an NPX package that generates a graphical representation of the commits made in the last 6 months across your repositories in Console. It can visualize commit density and patterns for a user-defined or repository-specific email.
 
-<img src="./docs/sample.png" alt="Sample Output" width="100%">
+<img src="https://ravikisha.github.io/assets/commitmap.png" alt="Sample Output" width="100%">
 
 ## Features
 
