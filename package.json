@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "A simple tool to visualize git commit history",
   "main": "index.js",
+  "type": "module",
   "bin": {
     "commitmap": "./index.js"
   },

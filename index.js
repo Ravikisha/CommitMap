@@ -1,10 +1,12 @@
-const simpleGit = require("simple-git");
-const fs = require("fs");
-const path = require("path");
-const gitconfig = require("git-config-path");
-const parse = require("parse-git-config");
-const extend = require("extend-shallow");
-const yargs = require("yargs");
+import simpleGit from "simple-git";
+import fs from "fs";
+import path from "path";
+import gitconfig from "git-config-path";
+import parse from "parse-git-config";
+import extend from "extend-shallow";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+
 
 // Getting the current working directory
 const currentDirectory = process.cwd();
@@ -134,9 +136,9 @@ function printCell(val, today) {
   if (today) escape = "\x1b[1;37;45m";
 
   if (val === 0) {
-    process.stdout.write(`${escape}  ${String("0").padStart(2, " ")}  \x1b[0m`);
+    process.stdout.write(`${escape} ${String("0").padStart(2, " ")} \x1b[0m`);
   } else {
-    process.stdout.write(`${escape}  ${String(val).padStart(2, " ")}  \x1b[0m`);
+    process.stdout.write(`${escape} ${String(val).padStart(2, " ")} \x1b[0m`);
   }
 }
 
@@ -189,7 +191,7 @@ function printMonths() {
   week.setDate(week.getDate() - daysInLastSixMonths);
   let month = week.getMonth();
 
-  process.stdout.write("         ");
+  process.stdout.write("       ");
   while (week < new Date()) {
     if (week.getMonth() !== month) {
       process.stdout.write(
@@ -197,7 +199,7 @@ function printMonths() {
       );
       month = week.getMonth();
     } else {
-      process.stdout.write("     ");
+      process.stdout.write("    ");
     }
     week.setDate(week.getDate() + 7);
   }
@@ -290,7 +292,7 @@ async function stats(email, rootPath) {
 }
 
 // Set up yargs to handle command-line flags
-const argv = yargs
+const argv = yargs(hideBin(process.argv))
   .option("email", {
     alias: "e",
     description: "Your email address (optional)",
@@ -305,19 +307,14 @@ const argv = yargs
   })
   .check((argv) => {
     // If the email is provided, validate its format
-    if (argv.email) {
-      const emailPattern =
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]{2,})\.[^<>()[\]\.,;:\s@"]{2,})$/;
-      if (!emailPattern.test(argv.email)) {
-        throw new Error(
-          "Invalid email format. Please provide a valid email address."
-        );
-      }
+    const emailPattern =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]{2,})\.[^<>()[\]\.,;:\s@"]{2,})$/;
+    if (argv.email && !emailPattern.test(argv.email)) {
+      throw new Error("Invalid email format.");
     }
 
-    // If the folder path is provided, validate that it's a non-empty string
     if (argv.folder && typeof argv.folder !== "string") {
-      throw new Error("Invalid folder path. Please provide a valid path.");
+      throw new Error("Invalid folder path.");
     }
 
     return true;
